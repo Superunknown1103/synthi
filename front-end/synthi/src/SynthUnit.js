@@ -19,8 +19,8 @@ export default class SynthUnit extends Component {
 
     createAudioContext = () => {
         ac = new AudioContext();
-         // call another function with this binding
-         Soundfont.instrument(ac, this.props.instrument, { soundfont: 'MusyngKite' }).then(function (inst) {
+        // call another function with this binding
+        Soundfont.instrument(ac, this.props.instrument, { soundfont: 'MusyngKite' }).then(function (inst) {
             let input = WebMidi.inputs[0];
             input.addListener('noteon', 'all', (event) => {
                 let note = event.note.name + event.note.octave.toString();
