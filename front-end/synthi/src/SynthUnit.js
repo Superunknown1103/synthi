@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import WebMidi from '../node_modules/webmidi/webmidi.min.js';
 
 var Soundfont = require('soundfont-player')
-var ac = new AudioContext();
+let ac;
 
 export default class SynthUnit extends Component {
 
@@ -13,21 +13,25 @@ export default class SynthUnit extends Component {
                 console.log("WebMidi could not be enabled.", err);
             } else {
                 console.log('midi connected')
-                // call another function with this binding
-                Soundfont.instrument(ac, this.props.instrument, { soundfont: 'MusyngKite' }).then(function (inst) {
-                    let input = WebMidi.inputs[0];
-                    input.addListener('noteon', 'all', (event) => {
-                        let note = event.note.name + event.note.octave.toString();
-                        inst.play(note)
-                    })
-                });
             }
+        });
+    }
+
+    createAudioContext = () => {
+        ac = new AudioContext();
+         // call another function with this binding
+         Soundfont.instrument(ac, this.props.instrument, { soundfont: 'MusyngKite' }).then(function (inst) {
+            let input = WebMidi.inputs[0];
+            input.addListener('noteon', 'all', (event) => {
+                let note = event.note.name + event.note.octave.toString();
+                inst.play(note)
+            })
         });
     }
 
     render() {
         return (
-            <div>wtf</div>
+            <button onClick={this.createAudioContext()}>Start Making Music</button>
         )
     }
 }
