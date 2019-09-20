@@ -5,6 +5,7 @@ export default class SoundSelect extends Component {
        let instrumentOptions= this.props.instrumentOptions.map(instr => <option value={instr}>{instr}</option>);
         return (
             <select onChange={(e) => this.props.changeSound(e)}>
+                <option value="" selected>Choose an instrument</option>
                 {instrumentOptions}
             </select>
         )

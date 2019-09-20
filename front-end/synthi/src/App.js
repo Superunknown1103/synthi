@@ -5,20 +5,25 @@ import Header from './Header.js';
 import SynthUnit from './SynthUnit.js';
 import SoundSelect from './SoundSelect.js';
 import instruments from './Instruments.js';
+import Controls from './Controls.js';
 
 export default class App extends Component {
   constructor() {
     super()
     this.state = {
-      instrument: 'acoustic_grand_piano',
+      instrument: '',
       instrumentOptions: instruments
     }
   }
 
   changeSound = (e) => {
-    this.setState({
-      instrument: e.target.value
-    })
+    if (e.target.value === "") {
+      alert('Select an instrument!')
+    } else {
+      this.setState({
+        instrument: e.target.value
+      })
+    }
   }
 
   render() {
@@ -28,6 +33,7 @@ export default class App extends Component {
           <Header />
         </div>
         <header className="App-content">
+          <Controls />
           <h3>Current Instrument: {this.state.instrument}</h3>
           <SoundSelect selectedSound={this.state.selectedSound} instrumentOptions={this.state.instrumentOptions} changeSound={this.changeSound} />
           <SynthUnit instrument={this.state.instrument} />

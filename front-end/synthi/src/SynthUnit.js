@@ -19,7 +19,6 @@ export default class SynthUnit extends Component {
 
     createAudioContext = () => {
         ac = new AudioContext();
-
         // call another function with this binding
         Soundfont.instrument(ac, this.props.instrument, { soundfont: 'MusyngKite' }).then(function (inst) {
             let input = WebMidi.inputs[0];
@@ -32,7 +31,9 @@ export default class SynthUnit extends Component {
 
     render() {
         return (
-            <button onClick={this.createAudioContext()}>Start Making Music</button>
+            <div>
+                <button onClick={this.createAudioContext()}>Start Making Music</button>
+            </div>
         )
     }
 }

@@ -33,6 +33,18 @@
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.Controls-container {
+  background-color: #ccb15f;
+  margin: 20px;
+  display: flex;
+}
+
+.knob {
+  display: block;
+  margin-right: 20px;
+  font-size: 15px;
+}
+
 
 
 .App-link {
